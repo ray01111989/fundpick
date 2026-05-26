@@ -5,9 +5,14 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { category, risk, horizon, goal } = req.body;
+  const { category, risk, horizon, goal } = req.body || {};
   if (!category || !risk || !horizon || !goal) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    return res.status(500).json({ error: 'GEMINI_API_KEY environment variable is not set. Please add it in Vercel → Settings → Environment Variables.' });
   }
 
   const today = new Date().toLocaleDateString('en-US', {
@@ -33,51 +38,75 @@ Return ONLY valid JSON — no markdown, no backticks, no extra text whatsoever. 
       "issuer": "Vanguard / Fidelity / iShares / Schwab / etc",
       "expense_ratio": "0.03%",
       "category_tag": "e.g. Large-Cap Blend",
-      "why_fits": "2-3 sentences in plain English explaining why THIS fund specifically fits the user's risk level, time horizon, and goal. Be concrete — directly reference their inputs, not generic praise.",
+      "why_fits": "2-3 sentences in plain English explaining why THIS fund specifically fits the user's risk level, time horizon, and goal. Be concrete, directly reference their inputs.",
       "key_metric_label": "e.g. 10-Year Avg Return",
       "key_metric_value": "e.g. ~11.2% per year",
       "fit_score": 95,
       "best_for": "short phrase e.g. set-and-forget long-term investors",
-      "watch_out": "One sentence on the main risk or drawback the investor should know about"
+      "watch_out": "One sentence on the main risk or drawback"
     }
   ]
 }
 
-Rules:
-- Exactly 4 funds. All must be real, well-known funds that actually exist.
-- fit_score is 0-100 based on how well the fund matches this user's specific inputs.
-- Rank from highest fit score first to lowest last.
-- Expense ratios must match real known values.
-- why_fits must directly reference the user's risk tolerance, time horizon, and goal.`;
+Exactly 4 funds. All real, well-known funds. Rank highest fit first. Expense ratios must be accurate.`;
 
-  try {
-    const apiKey = process.env.GEMINI_API_KEY;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  // Try models in order — Gemini keeps updating available model names
+  const models = [
+    'gemini-1.5-flash',
+    'gemini-1.5-flash-latest',
+    'gemini-2.0-flash',
+    'gemini-2.0-flash-lite',
+    'gemini-1.5-pro'
+  ];
 
-    const geminiRes = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.4,
-          maxOutputTokens: 1500
-        }
-      })
-    });
+  let lastError = '';
 
-    if (!geminiRes.ok) {
-      const errText = await geminiRes.text();
-      return res.status(500).json({ error: 'Gemini API error', detail: errText });
+  for (const model of models) {
+    try {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+      const geminiRes = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.4, maxOutputTokens: 1500 }
+        })
+      });
+
+      const rawText = await geminiRes.text();
+
+      if (!geminiRes.ok) {
+        lastError = `Model ${model} → HTTP ${geminiRes.status}: ${rawText.slice(0, 200)}`;
+        continue; // try next model
+      }
+
+      const geminiData = JSON.parse(rawText);
+      const content = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      if (!content) {
+        lastError = `Model ${model} → empty response`;
+        continue;
+      }
+
+      const clean = content.replace(/```json|```/g, '').trim();
+      const parsed = JSON.parse(clean);
+
+      if (!parsed.funds || !Array.isArray(parsed.funds)) {
+        lastError = `Model ${model} → bad JSON structure`;
+        continue;
+      }
+
+      // Success — return with which model worked
+      return res.status(200).json({ ...parsed, _model: model });
+
+    } catch (e) {
+      lastError = `Model ${model} → ${e.message}`;
+      continue;
     }
-
-    const geminiData = await geminiRes.json();
-    const raw = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    const clean = raw.replace(/```json|```/g, '').trim();
-    const parsed = JSON.parse(clean);
-
-    return res.status(200).json(parsed);
-  } catch (e) {
-    return res.status(500).json({ error: e.message });
   }
+
+  // All models failed
+  return res.status(500).json({
+    error: `All Gemini models failed. Last error: ${lastError}. Check your GEMINI_API_KEY in Vercel environment variables.`
+  });
 }
