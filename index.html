@@ -27,49 +27,32 @@
 html { font-size: 16px; scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
 
-/* NAV */
 nav {
-  background: var(--ink);
-  padding: 0 1.5rem;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 50;
+  background: var(--ink); padding: 0 1.5rem; height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 50;
 }
-.logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: white; letter-spacing: -0.3px; }
+.logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: white; }
 .logo span { color: #C9962A; }
 .nav-tag { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; }
 
-/* HERO */
 .hero {
-  background: var(--ink);
-  padding: 3.5rem 1.5rem 4.5rem;
-  text-align: center;
-  border-bottom: 2px solid var(--gold);
+  background: var(--ink); padding: 3.5rem 1.5rem 4.5rem;
+  text-align: center; border-bottom: 2px solid var(--gold);
 }
 .hero h1 {
   font-family: 'DM Serif Display', serif;
   font-size: clamp(2rem, 6vw, 3.8rem);
-  color: white;
-  line-height: 1.1;
-  margin-bottom: 1rem;
+  color: white; line-height: 1.1; margin-bottom: 1rem;
 }
 .hero h1 em { font-style: italic; color: var(--gold); }
 .hero p { font-size: 1.05rem; color: rgba(255,255,255,0.55); max-width: 440px; margin: 0 auto; font-weight: 300; line-height: 1.7; }
 
-/* MAIN */
 .main { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
 
-/* STEP CARD */
 .step-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 1.75rem;
-  margin-bottom: 1.25rem;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 18px; padding: 1.75rem; margin-bottom: 1.25rem;
 }
 .step-hd { display: flex; align-items: center; gap: 12px; margin-bottom: 5px; }
 .step-num {
@@ -81,11 +64,9 @@ nav {
 .step-title { font-size: 15px; font-weight: 600; }
 .step-hint { font-size: 13px; color: var(--ink3); margin: 0 0 1.25rem 40px; }
 
-/* CATEGORY GRID */
 .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 10px; }
 .cat-btn {
-  border: 1.5px solid var(--border);
-  border-radius: 12px; padding: 12px 14px;
+  border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 14px;
   cursor: pointer; background: white; text-align: left;
   transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
 }
@@ -96,7 +77,6 @@ nav {
 .cat-name { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
 .cat-sub { font-size: 11px; color: var(--ink3); line-height: 1.45; }
 
-/* PREFS */
 .pref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 @media(max-width:580px){ .pref-grid { grid-template-columns: 1fr; } }
 .pref-label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink3); margin-bottom: 7px; }
@@ -113,22 +93,18 @@ select:focus { outline: none; border-color: var(--blue); }
 .risk-track { display: flex; gap: 4px; margin-top: 8px; }
 .rseg { height: 4px; flex: 1; border-radius: 2px; background: var(--border); transition: background 0.2s; }
 
-/* GO BUTTON */
 .go-btn {
-  width: 100%; padding: 14px 20px;
-  background: var(--ink); color: white;
+  width: 100%; padding: 14px 20px; background: var(--ink); color: white;
   border: none; border-radius: 12px;
   font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
   cursor: pointer; letter-spacing: 0.01em;
   display: flex; align-items: center; justify-content: center; gap: 10px;
-  transition: background 0.15s, transform 0.1s;
-  margin-top: 1.5rem;
+  transition: background 0.15s, transform 0.1s; margin-top: 1.5rem;
 }
 .go-btn:hover { background: #2C2B22; }
 .go-btn:active { transform: scale(0.99); }
 .go-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
-/* LOADING */
 .loading {
   text-align: center; padding: 3rem 1rem;
   background: var(--card); border: 1px solid var(--border);
@@ -144,12 +120,10 @@ select:focus { outline: none; border-color: var(--blue); }
 .load-steps li.on { color: var(--blue); font-weight: 500; }
 .load-steps li.done { color: var(--green); }
 
-/* RESULTS */
 .res-wrap { margin-top: 1.5rem; animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-.res-header { margin-bottom: 1rem; }
 .res-title { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--ink); }
-.res-sub { font-size: 13px; color: var(--ink3); margin-top: 3px; }
+.res-sub { font-size: 13px; color: var(--ink3); margin-top: 3px; margin-bottom: 1rem; }
 .mkt-note {
   background: var(--blue-light); border-left: 3px solid var(--blue);
   border-radius: 0 10px 10px 0; padding: 12px 16px;
@@ -157,11 +131,10 @@ select:focus { outline: none; border-color: var(--blue); }
 }
 .mkt-note strong { color: var(--blue); }
 
-/* FUND CARD */
 .fund-card {
   background: var(--card); border: 1px solid var(--border);
-  border-radius: 18px; padding: 1.5rem;
-  margin-bottom: 1rem; position: relative; overflow: hidden;
+  border-radius: 18px; padding: 1.5rem; margin-bottom: 1rem;
+  position: relative; overflow: hidden;
   animation: slideUp 0.4s ease both;
   transition: box-shadow 0.2s, transform 0.2s;
 }
@@ -179,14 +152,14 @@ select:focus { outline: none; border-color: var(--blue); }
   letter-spacing: 0.08em; text-transform: uppercase;
   border-bottom-left-radius: 12px;
 }
-.rank-tag.r1 { background: #C9962A; color: #3D2400; }
-.rank-tag.r2 { background: #D6E4F0; color: #1A3A5C; }
-.rank-tag.r3 { background: #E8E4F8; color: #3A2878; }
-.rank-tag.r4 { background: #EBEBEB; color: #555; }
+.r1 { background: #C9962A; color: #3D2400; }
+.r2 { background: #D6E4F0; color: #1A3A5C; }
+.r3 { background: #E8E4F8; color: #3A2878; }
+.r4 { background: #EBEBEB; color: #555; }
 
-.fc-top { margin-bottom: 10px; padding-right: 120px; }
+.fc-top { margin-bottom: 10px; padding-right: 130px; }
 .fc-name { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--ink); line-height: 1.2; margin-bottom: 4px; }
-.fc-meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink3); }
+.fc-meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink3); flex-wrap: wrap; }
 .fc-ticker { font-weight: 700; color: var(--ink2); font-size: 13px; }
 .type-tag { background: var(--border); color: var(--ink2); padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
 
@@ -207,13 +180,10 @@ select:focus { outline: none; border-color: var(--blue); }
 
 .fit-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink3); margin-bottom: 5px; font-weight: 500; }
 .fit-bg { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
-.fit-fill { height: 100%; background: var(--blue); border-radius: 3px; transition: width 0.8s ease; }
+.fit-fill { height: 100%; background: var(--blue); border-radius: 3px; }
 .fund-card.top-pick .fit-fill { background: var(--gold); }
-
 .watchout { margin-top: 10px; font-size: 12px; color: var(--ink3); padding-top: 10px; border-top: 1px solid var(--border); }
-.watchout::before { content: '⚠ '; }
 
-/* DISCLAIMER */
 .disclaimer {
   background: var(--amber-light); border: 1px solid rgba(184,106,16,0.2);
   border-radius: 12px; padding: 14px 18px;
@@ -222,7 +192,6 @@ select:focus { outline: none; border-color: var(--blue); }
 .disclaimer strong { color: var(--amber); }
 .disclaimer a { color: var(--blue); }
 
-/* HOW IT WORKS */
 .how { margin-top: 3rem; }
 .how-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); margin-bottom: 1.25rem; }
 .how-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 12px; }
@@ -231,10 +200,12 @@ select:focus { outline: none; border-color: var(--blue); }
 .how-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
 .how-desc { font-size: 12px; color: var(--ink3); line-height: 1.6; }
 
-/* ERROR */
-.err { background: #FEF3F2; border: 1px solid #F9C6C2; border-radius: 12px; padding: 1rem 1.25rem; color: var(--red); font-size: 14px; margin-top: 1.5rem; }
+.err {
+  background: #FEF3F2; border: 1px solid #F9C6C2;
+  border-radius: 12px; padding: 1rem 1.25rem;
+  color: var(--red); font-size: 14px; margin-top: 1.5rem; line-height: 1.6;
+}
 
-/* FOOTER */
 footer { background: var(--ink); color: rgba(255,255,255,0.35); text-align: center; padding: 2rem 1.5rem; font-size: 12px; line-height: 1.9; margin-top: 4rem; }
 footer strong { color: rgba(255,255,255,0.6); }
 footer a { color: rgba(255,255,255,0.4); }
@@ -244,6 +215,7 @@ footer a { color: rgba(255,255,255,0.4); }
   .cat-grid { grid-template-columns: 1fr 1fr; }
   .fc-top { padding-right: 0; }
   .rank-tag { position: static; display: inline-block; margin-bottom: 10px; border-radius: 8px; }
+  .fc-metrics { gap: 12px; }
 }
 </style>
 </head>
@@ -261,7 +233,6 @@ footer a { color: rgba(255,255,255,0.4); }
 
 <div class="main">
 
-  <!-- Step 1 -->
   <div class="step-card">
     <div class="step-hd">
       <div class="step-num">1</div>
@@ -312,7 +283,6 @@ footer a { color: rgba(255,255,255,0.4); }
     </div>
   </div>
 
-  <!-- Step 2 -->
   <div class="step-card">
     <div class="step-hd">
       <div class="step-num">2</div>
@@ -352,7 +322,6 @@ footer a { color: rgba(255,255,255,0.4); }
     </div>
   </div>
 
-  <!-- Step 3 -->
   <div class="step-card" style="padding:1.5rem 1.75rem">
     <div class="step-hd" style="margin-bottom:8px">
       <div class="step-num">3</div>
@@ -364,17 +333,15 @@ footer a { color: rgba(255,255,255,0.4); }
     </button>
   </div>
 
-  <!-- Output area -->
   <div id="output"></div>
 
-  <!-- How it works -->
   <div class="how">
     <div class="how-title">How it works</div>
     <div class="how-grid">
       <div class="how-card">
         <div class="how-ico">🤖</div>
         <div class="how-name">AI-ranked results</div>
-        <div class="how-desc">Uses Claude AI to weigh your inputs and rank funds by fit — not just popularity or ads.</div>
+        <div class="how-desc">Uses Google Gemini AI to rank funds by fit to your profile — not popularity or ads.</div>
       </div>
       <div class="how-card">
         <div class="how-ico">📖</div>
@@ -383,13 +350,13 @@ footer a { color: rgba(255,255,255,0.4); }
       </div>
       <div class="how-card">
         <div class="how-ico">🆓</div>
-        <div class="how-name">Completely free</div>
-        <div class="how-desc">No account, no credit card, no ads. Open the page and go.</div>
+        <div class="how-name">100% free</div>
+        <div class="how-desc">No account needed, no credit card, no ads. Just open and use.</div>
       </div>
       <div class="how-card">
         <div class="how-ico">📱</div>
         <div class="how-name">Works anywhere</div>
-        <div class="how-desc">Phone, tablet, laptop — any browser, any device with internet.</div>
+        <div class="how-desc">Phone, tablet, laptop — any browser, any device with internet access.</div>
       </div>
     </div>
   </div>
@@ -398,7 +365,7 @@ footer a { color: rgba(255,255,255,0.4); }
 <footer>
   <strong>FundPick</strong> — For educational purposes only. Not financial advice.<br>
   Always verify with a licensed broker or financial advisor before investing.<br>
-  Powered by <a href="https://anthropic.com">Claude AI by Anthropic</a>
+  Powered by <a href="https://ai.google.dev">Google Gemini AI</a> · Hosted free on <a href="https://vercel.com">Vercel</a>
 </footer>
 
 <script>
@@ -425,29 +392,25 @@ function updateRisk() {
 }
 updateRisk();
 
-let stepIdx = 0;
 let stepTimer = null;
-const stepMsgs = [
-  'Analyzing your investor profile…',
-  'Scanning ' + (() => selCat)() + ' universe…',
-  'Ranking by fit score…',
-  'Writing plain-English explanations…'
-];
 
-function startSteps() {
-  stepIdx = 0;
-  const el = document.getElementById('stepList');
-  if (!el) return;
-  el.children[0].classList.add('on');
+function startSteps(catLabel) {
+  let idx = 0;
+  const list = document.getElementById('stepList');
+  if (!list) return;
+  list.children[0].classList.add('on');
   stepTimer = setInterval(() => {
-    const items = document.getElementById('stepList');
-    if (!items) { clearInterval(stepTimer); return; }
-    items.children[stepIdx].classList.remove('on');
-    items.children[stepIdx].classList.add('done');
-    items.children[stepIdx].textContent = '✓ ' + items.children[stepIdx].textContent.replace('⟳ ','');
-    stepIdx++;
-    if (stepIdx < items.children.length) {
-      items.children[stepIdx].classList.add('on');
+    const l = document.getElementById('stepList');
+    if (!l) { clearInterval(stepTimer); return; }
+    const cur = l.children[idx];
+    if (cur) {
+      cur.classList.remove('on');
+      cur.classList.add('done');
+      cur.textContent = '✓ ' + cur.textContent.replace('⟳ ', '');
+    }
+    idx++;
+    if (idx < l.children.length) {
+      l.children[idx].classList.add('on');
     } else {
       clearInterval(stepTimer);
     }
@@ -455,10 +418,10 @@ function startSteps() {
 }
 
 const rankMeta = [
-  { label: '🥇 Top Pick',        cls: 'r1', cardCls: 'top-pick' },
-  { label: '🥈 Strong Choice',   cls: 'r2', cardCls: '' },
-  { label: '🥉 Good Option',     cls: 'r3', cardCls: '' },
-  { label: 'Also Consider',      cls: 'r4', cardCls: '' }
+  { label: '🥇 Top Pick',      cls: 'r1', cardCls: 'top-pick' },
+  { label: '🥈 Strong Choice', cls: 'r2', cardCls: '' },
+  { label: '🥉 Good Option',   cls: 'r3', cardCls: '' },
+  { label: 'Also Consider',    cls: 'r4', cardCls: '' }
 ];
 
 async function runAnalysis() {
@@ -471,19 +434,18 @@ async function runAnalysis() {
   btn.disabled = true;
   btn.textContent = 'Analyzing…';
 
-  const catLabel = selCat;
   out.innerHTML = `
     <div class="loading">
       <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
       <ul class="load-steps" id="stepList">
         <li>⟳ Analyzing your investor profile</li>
-        <li>⟳ Scanning ${catLabel} funds</li>
+        <li>⟳ Scanning ${selCat} funds</li>
         <li>⟳ Ranking by fit score</li>
         <li>⟳ Writing plain-English explanations</li>
       </ul>
     </div>`;
 
-  startSteps();
+  startSteps(selCat);
 
   try {
     const resp = await fetch('/api/analyze', {
@@ -496,23 +458,22 @@ async function runAnalysis() {
 
     if (!resp.ok) {
       const e = await resp.json().catch(() => ({ error: 'Server error ' + resp.status }));
-      throw new Error(e.error || 'Server error');
+      throw new Error(e.error || 'Server error ' + resp.status);
     }
 
     const data = await resp.json();
+    if (!data.funds || !Array.isArray(data.funds)) throw new Error('Unexpected response format');
+
     const today = new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
 
-    let html = `
-      <div class="res-wrap">
-        <div class="res-header">
-          <div class="res-title">Your picks: ${catLabel}</div>
-          <div class="res-sub">Ranked for your profile &middot; ${today}</div>
-        </div>
-        <div class="mkt-note"><strong>Market context:</strong> ${data.market_context}</div>`;
+    let html = `<div class="res-wrap">
+      <div class="res-title">Your picks: ${selCat}</div>
+      <div class="res-sub">Ranked for your profile &middot; ${today}</div>
+      <div class="mkt-note"><strong>Market context:</strong> ${data.market_context}</div>`;
 
     data.funds.forEach((f, i) => {
       const score = Math.min(100, Math.max(0, Math.round(parseFloat(f.fit_score) || 80)));
-      const rm = rankMeta[i];
+      const rm = rankMeta[i] || rankMeta[3];
       html += `
         <div class="fund-card ${rm.cardCls}">
           <div class="rank-tag ${rm.cls}">${rm.label}</div>
@@ -521,7 +482,7 @@ async function runAnalysis() {
             <div class="fc-meta">
               <span class="fc-ticker">${f.ticker}</span>
               <span class="type-tag">${f.type}</span>
-              ${f.issuer}
+              <span>${f.issuer}</span>
             </div>
           </div>
           <div class="fc-why">💡 ${f.why_fits}</div>
@@ -533,27 +494,24 @@ async function runAnalysis() {
           </div>
           <div class="fit-row"><span>Fit for your profile</span><span>${score}%</span></div>
           <div class="fit-bg"><div class="fit-fill" style="width:${score}%"></div></div>
-          <div class="watchout">${f.watch_out}</div>
+          <div class="watchout">⚠ ${f.watch_out}</div>
         </div>`;
     });
 
-    const today2 = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
-    html += `
-        <div class="disclaimer">
-          <strong>⚠️ Educational purposes only — not financial advice.</strong><br>
-          These AI-generated picks are based on your stated preferences as of ${today2}. Fund performance, expense ratios, and suitability change over time.
-          Always verify on <a href="https://www.morningstar.com" target="_blank">Morningstar</a> or
-          <a href="https://finance.yahoo.com/screener" target="_blank">Yahoo Finance</a>
-          and consult a licensed financial advisor before investing.
-        </div>
-      </div>`;
+    html += `<div class="disclaimer">
+      <strong>⚠️ Educational purposes only — not financial advice.</strong><br>
+      AI-generated picks based on your stated preferences. Fund performance and suitability change over time.
+      Always verify on <a href="https://www.morningstar.com" target="_blank">Morningstar</a> or
+      <a href="https://finance.yahoo.com/screener" target="_blank">Yahoo Finance</a>
+      and consult a licensed financial advisor before investing.
+    </div></div>`;
 
     out.innerHTML = html;
     out.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   } catch (e) {
     clearInterval(stepTimer);
-    out.innerHTML = `<div class="err"><strong>Something went wrong:</strong> ${e.message}. Please try again.</div>`;
+    out.innerHTML = `<div class="err"><strong>Something went wrong:</strong> ${e.message}.<br>Please try again in a moment.</div>`;
   }
 
   btn.disabled = false;
