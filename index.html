@@ -689,26 +689,26 @@ let selCat = 'US Index Funds';
 /* ── QUIZ DATA ── */
 const questions = [
   {
-    q: 'When do you think you'll need this money?',
-    hint: 'This is the single biggest factor in choosing the right fund type.',
+    q: "When do you think you'll need this money?",
+    hint: "This is the single biggest factor in choosing the right fund type.",
     opts: [
-      { ico: '📅', label: 'Within 1–3 years', sub: 'A house down payment, emergency fund, big purchase', value: 'short' },
-      { ico: '📆', label: 'In 3–10 years', sub: 'Kids college fund, medium-term goals', value: 'medium' },
+      { ico: '📅', label: 'Within 1-3 years', sub: 'A house down payment, emergency fund, big purchase', value: 'short' },
+      { ico: '📆', label: 'In 3-10 years', sub: 'Kids college fund, medium-term goals', value: 'medium' },
       { ico: '🗓️', label: '10+ years from now', sub: 'Retirement, long-term wealth building', value: 'long' }
     ]
   },
   {
-    q: 'How would you feel if your investment dropped 20% in a bad year?',
-    hint: 'Be honest — there's no wrong answer, just the right fund for your personality.',
+    q: "How would you feel if your investment dropped 20% in a bad year?",
+    hint: "Be honest — there is no wrong answer, just the right fund for your personality.",
     opts: [
-      { ico: '😰', label: 'I'd panic and want out', sub: 'I need stability above everything', value: 'conservative' },
-      { ico: '😬', label: 'Uncomfortable but I'd hold on', sub: 'I understand risk but it still stresses me', value: 'moderate' },
-      { ico: '😎', label: 'Fine — I'm in it for the long game', sub: 'Short-term drops don't bother me', value: 'aggressive' }
+      { ico: '😰', label: "I would panic and want out", sub: 'I need stability above everything', value: 'conservative' },
+      { ico: '😬', label: "Uncomfortable but I would hold on", sub: 'I understand risk but it still stresses me', value: 'moderate' },
+      { ico: '😎', label: "Fine — I am in it for the long game", sub: 'Short-term drops do not bother me', value: 'aggressive' }
     ]
   },
   {
-    q: 'What's your main goal for this money?',
-    hint: 'Different goals call for very different fund types.',
+    q: "What is your main goal for this money?",
+    hint: "Different goals call for very different fund types.",
     opts: [
       { ico: '📈', label: 'Grow it as much as possible', sub: 'Maximize long-term wealth', value: 'grow' },
       { ico: '💵', label: 'Get regular cash from it', sub: 'Monthly or quarterly income while holding', value: 'income' },
@@ -729,7 +729,10 @@ function startQuiz() {
   document.getElementById('screener').style.display = 'none';
   document.getElementById('output').innerHTML = '';
   renderQuizStep();
-  window.scrollTo({ top: document.getElementById('quizSection').offsetTop - 70, behavior: 'smooth' });
+  setTimeout(() => {
+    const el = document.getElementById('quizSection');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
 }
 
 function closeQuiz() {
