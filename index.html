@@ -23,6 +23,8 @@
   --amber-light: #FDF3E3;
   --gold: #C9962A;
   --red: #B03020;
+  --purple: #5B3FA6;
+  --purple-light: #F0EDFB;
 }
 html { font-size: 16px; scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
@@ -37,19 +39,103 @@ nav {
 .nav-tag { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; }
 
 .hero {
-  background: var(--ink); padding: 3.5rem 1.5rem 4.5rem;
+  background: var(--ink); padding: 3rem 1.5rem 4rem;
   text-align: center; border-bottom: 2px solid var(--gold);
 }
 .hero h1 {
   font-family: 'DM Serif Display', serif;
-  font-size: clamp(2rem, 6vw, 3.8rem);
+  font-size: clamp(1.9rem, 5vw, 3.4rem);
   color: white; line-height: 1.1; margin-bottom: 1rem;
 }
 .hero h1 em { font-style: italic; color: var(--gold); }
-.hero p { font-size: 1.05rem; color: rgba(255,255,255,0.55); max-width: 440px; margin: 0 auto; font-weight: 300; line-height: 1.7; }
+.hero p { font-size: 1rem; color: rgba(255,255,255,0.55); max-width: 460px; margin: 0 auto 1.75rem; font-weight: 300; line-height: 1.7; }
+.hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.hero-btn {
+  padding: 12px 24px; border-radius: 10px; font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s;
+}
+.hero-btn-primary { background: var(--gold); color: #2D1A00; }
+.hero-btn-primary:hover { background: #d9a830; }
+.hero-btn-secondary { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+.hero-btn-secondary:hover { background: rgba(255,255,255,0.18); }
 
 .main { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
 
+/* ── GUIDE SECTION ── */
+.guide-section {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 18px; padding: 2rem; margin-bottom: 1.5rem;
+}
+.guide-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); margin-bottom: 6px; }
+.guide-sub { font-size: 13px; color: var(--ink3); margin-bottom: 1.75rem; line-height: 1.6; }
+
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.guide-card {
+  border: 1.5px solid var(--border); border-radius: 14px; padding: 1.1rem 1.25rem;
+  background: white; cursor: pointer; text-align: left;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.guide-card:hover { border-color: var(--blue); box-shadow: 0 4px 16px rgba(26,95,168,0.1); transform: translateY(-2px); }
+.gc-ico { font-size: 26px; margin-bottom: 8px; }
+.gc-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.gc-desc { font-size: 12px; color: var(--ink3); line-height: 1.55; margin-bottom: 10px; }
+.gc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.gc-tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; letter-spacing: 0.04em; }
+.tag-green { background: var(--green-light); color: var(--green); }
+.tag-blue { background: var(--blue-light); color: var(--blue); }
+.tag-amber { background: var(--amber-light); color: var(--amber); }
+.tag-purple { background: var(--purple-light); color: var(--purple); }
+
+/* ── QUIZ ── */
+.quiz-section {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 18px; padding: 2rem; margin-bottom: 1.5rem;
+  display: none;
+}
+.quiz-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+.quiz-back { background: none; border: none; cursor: pointer; font-size: 13px; color: var(--blue); font-family: 'DM Sans', sans-serif; padding: 0; }
+.quiz-title { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--ink); }
+.quiz-progress { height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 1.75rem; overflow: hidden; }
+.quiz-bar { height: 100%; background: var(--blue); border-radius: 2px; transition: width 0.4s ease; }
+.quiz-q { font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 4px; line-height: 1.4; }
+.quiz-hint { font-size: 13px; color: var(--ink3); margin-bottom: 1.25rem; }
+.quiz-opts { display: flex; flex-direction: column; gap: 10px; }
+.quiz-opt {
+  border: 1.5px solid var(--border); border-radius: 12px; padding: 14px 16px;
+  cursor: pointer; background: white; text-align: left;
+  display: flex; align-items: flex-start; gap: 12px;
+  transition: border-color 0.15s, background 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.quiz-opt:hover { border-color: var(--blue); background: var(--blue-light); }
+.quiz-opt.selected { border-color: var(--blue); background: var(--blue-light); }
+.qo-ico { font-size: 22px; flex-shrink: 0; line-height: 1.3; }
+.qo-text { flex: 1; }
+.qo-label { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.qo-sub { font-size: 12px; color: var(--ink3); line-height: 1.45; }
+.quiz-nav { display: flex; justify-content: flex-end; margin-top: 1.5rem; }
+.quiz-next {
+  padding: 11px 28px; background: var(--ink); color: white;
+  border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.15s;
+}
+.quiz-next:hover { background: #2C2B22; }
+.quiz-next:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* ── RECOMMENDATION BANNER ── */
+.rec-banner {
+  background: var(--green-light); border: 1.5px solid rgba(26,107,74,0.3);
+  border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;
+  display: none;
+}
+.rec-banner-top { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.rec-icon { font-size: 22px; }
+.rec-label { font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--green); }
+.rec-title { font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.rec-reason { font-size: 13px; color: var(--ink2); line-height: 1.65; }
+.rec-change { font-size: 12px; color: var(--blue); cursor: pointer; margin-top: 8px; display: inline-block; }
+
+/* ── SCREENER ── */
 .step-card {
   background: var(--card); border: 1px solid var(--border);
   border-radius: 18px; padding: 1.75rem; margin-bottom: 1.25rem;
@@ -57,14 +143,13 @@ nav {
 .step-hd { display: flex; align-items: center; gap: 12px; margin-bottom: 5px; }
 .step-num {
   width: 28px; height: 28px; border-radius: 50%;
-  background: var(--ink); color: white;
-  font-size: 12px; font-weight: 600;
+  background: var(--ink); color: white; font-size: 12px; font-weight: 600;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .step-title { font-size: 15px; font-weight: 600; }
 .step-hint { font-size: 13px; color: var(--ink3); margin: 0 0 1.25rem 40px; }
 
-.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 10px; }
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
 .cat-btn {
   border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 14px;
   cursor: pointer; background: white; text-align: left;
@@ -73,9 +158,9 @@ nav {
 .cat-btn:hover { border-color: var(--blue); background: var(--blue-light); }
 .cat-btn.active { border-color: var(--blue); background: var(--blue-light); box-shadow: 0 0 0 3px rgba(26,95,168,0.1); }
 .cat-btn.active .cat-name { color: var(--blue); }
-.cat-ico { font-size: 22px; margin-bottom: 6px; line-height: 1; }
-.cat-name { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
-.cat-sub { font-size: 11px; color: var(--ink3); line-height: 1.45; }
+.cat-ico { font-size: 20px; margin-bottom: 5px; line-height: 1; }
+.cat-name { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+.cat-sub { font-size: 11px; color: var(--ink3); line-height: 1.4; }
 
 .pref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 @media(max-width:580px){ .pref-grid { grid-template-columns: 1fr; } }
@@ -85,19 +170,16 @@ select {
   font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ink); background: white; cursor: pointer;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 12px center;
-  transition: border-color 0.15s;
+  background-repeat: no-repeat; background-position: right 12px center; transition: border-color 0.15s;
 }
 select:focus { outline: none; border-color: var(--blue); }
-
 .risk-track { display: flex; gap: 4px; margin-top: 8px; }
 .rseg { height: 4px; flex: 1; border-radius: 2px; background: var(--border); transition: background 0.2s; }
 
 .go-btn {
   width: 100%; padding: 14px 20px; background: var(--ink); color: white;
-  border: none; border-radius: 12px;
-  font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
-  cursor: pointer; letter-spacing: 0.01em;
+  border: none; border-radius: 12px; font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 600; cursor: pointer;
   display: flex; align-items: center; justify-content: center; gap: 10px;
   transition: background 0.15s, transform 0.1s; margin-top: 1.5rem;
 }
@@ -105,6 +187,7 @@ select:focus { outline: none; border-color: var(--blue); }
 .go-btn:active { transform: scale(0.99); }
 .go-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
+/* ── LOADING ── */
 .loading {
   text-align: center; padding: 3rem 1rem;
   background: var(--card); border: 1px solid var(--border);
@@ -112,14 +195,14 @@ select:focus { outline: none; border-color: var(--blue); }
 }
 .dots { display: flex; justify-content: center; gap: 7px; margin-bottom: 1.25rem; }
 .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue); animation: bop 1.1s ease-in-out infinite; }
-.dot:nth-child(2){ animation-delay:.18s }
-.dot:nth-child(3){ animation-delay:.36s }
+.dot:nth-child(2){ animation-delay:.18s } .dot:nth-child(3){ animation-delay:.36s }
 @keyframes bop { 0%,80%,100%{transform:scale(.5);opacity:.3} 40%{transform:scale(1);opacity:1} }
 .load-steps { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-.load-steps li { font-size: 13px; color: var(--ink3); transition: color 0.3s; }
+.load-steps li { font-size: 13px; color: var(--ink3); }
 .load-steps li.on { color: var(--blue); font-weight: 500; }
 .load-steps li.done { color: var(--green); }
 
+/* ── RESULTS ── */
 .res-wrap { margin-top: 1.5rem; animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 .res-title { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--ink); }
@@ -141,16 +224,13 @@ select:focus { outline: none; border-color: var(--blue); }
 .fund-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.07); transform: translateY(-2px); }
 .fund-card.top-pick { border-color: var(--gold); border-width: 2px; }
 @keyframes slideUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
-.fund-card:nth-child(1){animation-delay:.05s}
-.fund-card:nth-child(2){animation-delay:.12s}
-.fund-card:nth-child(3){animation-delay:.19s}
-.fund-card:nth-child(4){animation-delay:.26s}
+.fund-card:nth-child(1){animation-delay:.05s} .fund-card:nth-child(2){animation-delay:.12s}
+.fund-card:nth-child(3){animation-delay:.19s} .fund-card:nth-child(4){animation-delay:.26s}
 
 .rank-tag {
   position: absolute; top: 0; right: 0;
   padding: 6px 16px; font-size: 11px; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  border-bottom-left-radius: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase; border-bottom-left-radius: 12px;
 }
 .r1 { background: #C9962A; color: #3D2400; }
 .r2 { background: #D6E4F0; color: #1A3A5C; }
@@ -161,23 +241,18 @@ select:focus { outline: none; border-color: var(--blue); }
 .fc-name { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--ink); line-height: 1.2; margin-bottom: 4px; }
 .fc-meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink3); flex-wrap: wrap; }
 .fc-ticker { font-weight: 700; color: var(--ink2); font-size: 13px; }
-.type-tag { background: var(--border); color: var(--ink2); padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
-
+.type-tag { background: var(--border); color: var(--ink2); padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
 .fc-why {
   font-size: 13.5px; color: var(--ink2); line-height: 1.7;
   background: var(--bg); border-left: 3px solid var(--border);
   padding: 11px 14px; border-radius: 0 8px 8px 0; margin: 12px 0;
 }
 .fund-card.top-pick .fc-why { border-left-color: var(--gold); }
-
 .fc-metrics { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 14px; }
 .metric { display: flex; flex-direction: column; gap: 2px; }
 .met-label { font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink3); }
 .met-val { font-size: 15px; font-weight: 600; color: var(--ink); }
-.met-val.g { color: var(--green); }
-.met-val.a { color: var(--amber); font-size: 13px; }
-.met-val.sm { font-size: 13px; }
-
+.met-val.g { color: var(--green); } .met-val.a { color: var(--amber); font-size: 13px; } .met-val.sm { font-size: 13px; }
 .fit-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink3); margin-bottom: 5px; font-weight: 500; }
 .fit-bg { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
 .fit-fill { height: 100%; background: var(--blue); border-radius: 3px; }
@@ -192,30 +267,76 @@ select:focus { outline: none; border-color: var(--blue); }
 .disclaimer strong { color: var(--amber); }
 .disclaimer a { color: var(--blue); }
 
-.how { margin-top: 3rem; }
-.how-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); margin-bottom: 1.25rem; }
-.how-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 12px; }
-.how-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.25rem; }
-.how-ico { font-size: 24px; margin-bottom: 8px; }
-.how-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-.how-desc { font-size: 12px; color: var(--ink3); line-height: 1.6; }
+.err { background: #FEF3F2; border: 1px solid #F9C6C2; border-radius: 12px; padding: 1rem 1.25rem; color: var(--red); font-size: 14px; margin-top: 1.5rem; line-height: 1.6; }
 
-.err {
-  background: #FEF3F2; border: 1px solid #F9C6C2;
-  border-radius: 12px; padding: 1rem 1.25rem;
-  color: var(--red); font-size: 14px; margin-top: 1.5rem; line-height: 1.6;
+/* ── FEES SECTION ── */
+.fees-section {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 18px; padding: 2rem; margin-bottom: 1.5rem;
 }
+.fees-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); margin-bottom: 6px; }
+.fees-sub { font-size: 13px; color: var(--ink3); margin-bottom: 1.75rem; line-height: 1.6; max-width: 600px; }
+
+.fee-type-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin-bottom: 1.75rem; }
+.fee-card {
+  border: 1.5px solid var(--border); border-radius: 14px; padding: 1.25rem;
+  background: white;
+}
+.fee-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.fee-ico { font-size: 24px; }
+.fee-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.fee-tag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 2px; display: inline-block; }
+.fee-tag-green { background: var(--green-light); color: var(--green); }
+.fee-tag-amber { background: var(--amber-light); color: var(--amber); }
+.fee-tag-red { background: #FEF3F2; color: var(--red); }
+.fee-range { font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.fee-range span { font-size: 13px; font-weight: 400; color: var(--ink3); }
+.fee-desc { font-size: 12px; color: var(--ink3); line-height: 1.6; margin-bottom: 10px; }
+.fee-example { background: var(--bg); border-radius: 8px; padding: 8px 12px; font-size: 12px; color: var(--ink2); line-height: 1.6; }
+.fee-example strong { color: var(--ink); }
+
+.fee-bar-wrap { margin-bottom: 1.75rem; }
+.fee-bar-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.fee-bar-sub { font-size: 12px; color: var(--ink3); margin-bottom: 14px; }
+.fee-compare-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.fee-compare-label { font-size: 13px; color: var(--ink2); width: 160px; flex-shrink: 0; }
+.fee-compare-bar-bg { flex: 1; height: 20px; background: var(--border); border-radius: 6px; overflow: hidden; position: relative; }
+.fee-compare-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 600; white-space: nowrap; transition: width 0.8s ease; }
+.fill-green { background: var(--green-light); color: var(--green); }
+.fill-blue { background: var(--blue-light); color: var(--blue); }
+.fill-amber { background: var(--amber-light); color: var(--amber); }
+.fill-red { background: #FEF3F2; color: var(--red); }
+
+.fee-impact-box {
+  background: var(--ink); color: white;
+  border-radius: 14px; padding: 1.5rem; margin-bottom: 1.75rem;
+}
+.fee-impact-title { font-family: 'DM Serif Display', serif; font-size: 18px; color: white; margin-bottom: 4px; }
+.fee-impact-sub { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 1.25rem; }
+.fee-impact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+.fee-impact-card { background: rgba(255,255,255,0.08); border-radius: 10px; padding: 1rem; }
+.fic-label { font-size: 11px; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
+.fic-val { font-size: 20px; font-weight: 600; color: white; margin-bottom: 2px; }
+.fic-note { font-size: 11px; color: rgba(255,255,255,0.45); }
+.fic-val.gold { color: var(--gold); }
+.fic-val.red { color: #F97B6E; }
+
+.fee-rules { display: flex; flex-direction: column; gap: 10px; }
+.fee-rule { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border-radius: 10px; background: var(--bg); }
+.fee-rule-ico { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.fee-rule-text { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+.fee-rule-text strong { color: var(--ink); }
 
 footer { background: var(--ink); color: rgba(255,255,255,0.35); text-align: center; padding: 2rem 1.5rem; font-size: 12px; line-height: 1.9; margin-top: 4rem; }
 footer strong { color: rgba(255,255,255,0.6); }
 footer a { color: rgba(255,255,255,0.4); }
 
 @media(max-width:480px){
-  .hero h1 { font-size: 2rem; }
+  .hero h1 { font-size: 1.9rem; }
   .cat-grid { grid-template-columns: 1fr 1fr; }
   .fc-top { padding-right: 0; }
   .rank-tag { position: static; display: inline-block; margin-bottom: 10px; border-radius: 8px; }
-  .fc-metrics { gap: 12px; }
+  .guide-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -228,139 +349,333 @@ footer a { color: rgba(255,255,255,0.4); }
 
 <div class="hero">
   <h1>Find the <em>right</em> fund<br>for you — right now</h1>
-  <p>Answer 3 quick questions. Get ranked ETF &amp; mutual fund picks with plain-English explanations of exactly why each one fits you.</p>
+  <p>Not sure where to start? Answer 3 quick questions about your life and we'll tell you exactly what to look for — then rank the best funds for you.</p>
+  <div class="hero-btns">
+    <button class="hero-btn hero-btn-primary" onclick="startQuiz()">🧭 Help me choose — I'm not sure</button>
+    <button class="hero-btn hero-btn-secondary" onclick="skipToScreener()">I know what I want →</button>
+  </div>
 </div>
 
 <div class="main">
 
-  <div class="step-card">
-    <div class="step-hd">
-      <div class="step-num">1</div>
-      <div class="step-title">What do you want your money to do?</div>
-    </div>
-    <p class="step-hint">Pick the category that matches your investing goal.</p>
-    <div class="cat-grid" id="catGrid">
-      <button class="cat-btn active" data-cat="US Index Funds" onclick="pickCat(this)">
-        <div class="cat-ico">🇺🇸</div>
-        <div class="cat-name">US Index</div>
-        <div class="cat-sub">Track the whole market — low cost, proven long-term</div>
-      </button>
-      <button class="cat-btn" data-cat="Growth ETFs" onclick="pickCat(this)">
-        <div class="cat-ico">🚀</div>
-        <div class="cat-name">Growth</div>
-        <div class="cat-sub">High-growth companies, higher risk &amp; reward</div>
-      </button>
-      <button class="cat-btn" data-cat="Dividend Income Funds" onclick="pickCat(this)">
-        <div class="cat-ico">💵</div>
-        <div class="cat-name">Dividend Income</div>
-        <div class="cat-sub">Regular cash payouts from stable companies</div>
-      </button>
-      <button class="cat-btn" data-cat="International Funds" onclick="pickCat(this)">
-        <div class="cat-ico">🌍</div>
-        <div class="cat-name">International</div>
-        <div class="cat-sub">Diversify beyond the US into global markets</div>
-      </button>
-      <button class="cat-btn" data-cat="Bond and Fixed Income Funds" onclick="pickCat(this)">
-        <div class="cat-ico">🛡️</div>
-        <div class="cat-name">Bonds / Safety</div>
-        <div class="cat-sub">Lower risk, stable returns, capital preservation</div>
-      </button>
-      <button class="cat-btn" data-cat="Technology Sector ETFs" onclick="pickCat(this)">
-        <div class="cat-ico">💻</div>
-        <div class="cat-name">Tech Sector</div>
-        <div class="cat-sub">Bet specifically on tech &amp; innovation</div>
-      </button>
-      <button class="cat-btn" data-cat="Real Estate REIT Funds" onclick="pickCat(this)">
-        <div class="cat-ico">🏠</div>
-        <div class="cat-name">Real Estate (REITs)</div>
-        <div class="cat-sub">Property exposure without buying property</div>
-      </button>
-      <button class="cat-btn" data-cat="ESG and Sustainable Funds" onclick="pickCat(this)">
-        <div class="cat-ico">🌱</div>
-        <div class="cat-name">ESG / Sustainable</div>
-        <div class="cat-sub">Invest aligned with your personal values</div>
-      </button>
-    </div>
-  </div>
+  <!-- GUIDE: what each category means -->
+  <div class="guide-section" id="guideSection">
+    <div class="guide-title">What does each category mean?</div>
+    <div class="guide-sub">Click any card to learn more and jump straight to those fund picks — or use the quiz above if you're not sure which fits you.</div>
+    <div class="guide-grid">
 
-  <div class="step-card">
-    <div class="step-hd">
-      <div class="step-num">2</div>
-      <div class="step-title">Tell us about you as an investor</div>
-    </div>
-    <p class="step-hint">These 3 answers shape which specific funds rank highest for your situation.</p>
-    <div class="pref-grid">
-      <div>
-        <label class="pref-label" for="risk">Risk tolerance</label>
-        <select id="risk" onchange="updateRisk()">
-          <option value="conservative">😴 Conservative — I hate losing money</option>
-          <option value="moderate" selected>⚖️ Moderate — some risk is okay</option>
-          <option value="aggressive">🔥 Aggressive — I want max growth</option>
-        </select>
-        <div class="risk-track">
-          <div class="rseg" id="rs1"></div><div class="rseg" id="rs2"></div>
-          <div class="rseg" id="rs3"></div><div class="rseg" id="rs4"></div><div class="rseg" id="rs5"></div>
+      <div class="guide-card" onclick="applyGuide('US Index Funds','moderate','long term (10+ years)','grow my wealth over time')">
+        <div class="gc-ico">🇺🇸</div>
+        <div class="gc-title">US Index Funds</div>
+        <div class="gc-desc">Owns a tiny piece of every major US company at once. When the US economy grows, you grow. The most popular choice for long-term retirement savings.</div>
+        <div class="gc-tags">
+          <span class="gc-tag tag-green">Low cost</span>
+          <span class="gc-tag tag-blue">Long term</span>
+          <span class="gc-tag tag-blue">Beginner friendly</span>
         </div>
       </div>
-      <div>
-        <label class="pref-label" for="horizon">Time horizon</label>
-        <select id="horizon">
-          <option value="short term (1-3 years)">📅 1–3 years (short term)</option>
-          <option value="medium term (3-10 years)" selected>📆 3–10 years (medium)</option>
-          <option value="long term (10+ years)">🗓️ 10+ years (long term)</option>
-        </select>
+
+      <div class="guide-card" onclick="applyGuide('Growth ETFs','aggressive','long term (10+ years)','grow my wealth over time')">
+        <div class="gc-ico">🚀</div>
+        <div class="gc-title">Growth Funds</div>
+        <div class="gc-desc">Companies expected to grow faster than average — think young tech firms and innovators. Higher potential returns but more stomach-dropping dips along the way.</div>
+        <div class="gc-tags">
+          <span class="gc-tag tag-amber">Higher risk</span>
+          <span class="gc-tag tag-blue">Long term</span>
+          <span class="gc-tag tag-amber">Volatile</span>
+        </div>
       </div>
-      <div>
-        <label class="pref-label" for="goal">Primary goal</label>
-        <select id="goal">
-          <option value="grow my wealth over time">📈 Grow my wealth</option>
-          <option value="generate regular income or dividends">💰 Generate income / dividends</option>
-          <option value="preserve capital safely">🏦 Preserve capital safely</option>
-          <option value="beat inflation">🎯 Beat inflation</option>
-        </select>
+
+      <div class="guide-card" onclick="applyGuide('Dividend Income Funds','conservative','medium term (3-10 years)','generate regular income or dividends')">
+        <div class="gc-ico">💵</div>
+        <div class="gc-title">Dividend Income</div>
+        <div class="gc-desc">Funds that pay you cash regularly (quarterly) just for holding them — like rent from property. Great if you want your money to generate steady income without selling anything.</div>
+        <div class="gc-tags">
+          <span class="gc-tag tag-green">Regular cash</span>
+          <span class="gc-tag tag-green">Stable</span>
+          <span class="gc-tag tag-blue">Retiree friendly</span>
+        </div>
       </div>
+
+      <div class="guide-card" onclick="applyGuide('Bond and Fixed Income Funds','conservative','short term (1-3 years)','preserve capital safely')">
+        <div class="gc-ico">🛡️</div>
+        <div class="gc-title">Bonds / Safety</div>
+        <div class="gc-desc">Lending money to governments or companies in exchange for steady interest payments. Much lower risk than stocks — good when you can't afford to lose money or need funds soon.</div>
+        <div class="gc-tags">
+          <span class="gc-tag tag-green">Lowest risk</span>
+          <span class="gc-tag tag-green">Capital safe</span>
+          <span class="gc-tag tag-blue">Short term ok</span>
+        </div>
+      </div>
+
+      <div class="guide-card" onclick="applyGuide('Technology Sector ETFs','aggressive','long term (10+ years)','grow my wealth over time')">
+        <div class="gc-ico">💻</div>
+        <div class="gc-title">Tech Sector</div>
+        <div class="gc-desc">All-in on technology companies — AI, software, semiconductors, cloud. Can massively outperform, but also drops harder than the broad market when tech falls out of favor.</div>
+        <div class="gc-tags">
+          <span class="gc-tag tag-amber">High risk</span>
+          <span class="gc-tag tag-purple">High reward</span>
+          <span class="gc-tag tag-amber">Concentrated</span>
+        </div>
+      </div>
+
+      <div class="guide-card" onclick="applyGuide('International Funds','moderate','long term (10+ years)','grow my wealth over time')">
+        <div class="gc-ico">🌍</div>
+        <div class="gc-title">International Funds</div>
+        <div class="gc-desc">Invest outside the US — Europe, Asia, emerging markets. Reduces your dependence on any single country's economy. Good diversification alongside a US fund.</div>
+        <div class="gc-tags">
+          <span class="gc-tag tag-blue">Diversification</span>
+          <span class="gc-tag tag-blue">Global</span>
+          <span class="gc-tag tag-green">Medium risk</span>
+        </div>
+      </div>
+
+      <div class="guide-card" onclick="applyGuide('Real Estate REIT Funds','moderate','medium term (3-10 years)','generate regular income or dividends')">
+        <div class="gc-ico">🏠</div>
+        <div class="gc-title">Real Estate (REITs)</div>
+        <div class="gc-desc">Own a slice of shopping malls, apartments, offices, and warehouses without buying property. Required by law to pay out 90% of income as dividends — so great for income seekers.</div>
+        <div class="gc-tags">
+          <span class="gc-tag tag-green">High dividends</span>
+          <span class="gc-tag tag-blue">Property exposure</span>
+        </div>
+      </div>
+
+      <div class="guide-card" onclick="applyGuide('ESG and Sustainable Funds','moderate','long term (10+ years)','grow my wealth over time')">
+        <div class="gc-ico">🌱</div>
+        <div class="gc-title">ESG / Sustainable</div>
+        <div class="gc-desc">Funds that screen out companies with poor environmental, social, or governance records. Invest in line with your values without sacrificing diversification.</div>
+        <div class="gc-tags">
+          <span class="gc-tag tag-green">Values-aligned</span>
+          <span class="gc-tag tag-blue">Diversified</span>
+          <span class="gc-tag tag-purple">Ethical</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <div class="step-card" style="padding:1.5rem 1.75rem">
-    <div class="step-hd" style="margin-bottom:8px">
-      <div class="step-num">3</div>
-      <div class="step-title">Get your personalized fund picks</div>
+  <!-- QUIZ -->
+  <div class="quiz-section" id="quizSection">
+    <div class="quiz-header">
+      <button class="quiz-back" onclick="closeQuiz()">← Back</button>
+      <div class="quiz-title">Find my fund type</div>
     </div>
-    <p class="step-hint" style="margin-bottom:14px">AI ranks the best-fit funds and explains each one in plain English — no jargon.</p>
-    <button class="go-btn" id="goBtn" onclick="runAnalysis()">
-      ✦ &nbsp;Show me the best funds for me
-    </button>
+    <div class="quiz-progress"><div class="quiz-bar" id="quizBar" style="width:0%"></div></div>
+    <div id="quizBody"></div>
+    <div class="quiz-nav"><button class="quiz-next" id="quizNextBtn" onclick="quizNext()" disabled>Next →</button></div>
   </div>
+
+  <!-- RECOMMENDATION BANNER -->
+  <div class="rec-banner" id="recBanner">
+    <div class="rec-banner-top">
+      <div class="rec-icon">✅</div>
+      <div class="rec-label">Recommended for you</div>
+    </div>
+    <div class="rec-title" id="recTitle"></div>
+    <div class="rec-reason" id="recReason"></div>
+    <span class="rec-change" onclick="resetToGuide()">↩ Change my answers</span>
+  </div>
+
+  <!-- SCREENER -->
+  <div id="screener" style="display:none">
+
+    <div class="step-card">
+      <div class="step-hd"><div class="step-num">1</div><div class="step-title">Fund category</div></div>
+      <p class="step-hint">Your recommended category is pre-selected — or pick a different one.</p>
+      <div class="cat-grid" id="catGrid">
+        <button class="cat-btn active" data-cat="US Index Funds" onclick="pickCat(this)"><div class="cat-ico">🇺🇸</div><div class="cat-name">US Index</div><div class="cat-sub">Whole market, low cost</div></button>
+        <button class="cat-btn" data-cat="Growth ETFs" onclick="pickCat(this)"><div class="cat-ico">🚀</div><div class="cat-name">Growth</div><div class="cat-sub">High growth, higher risk</div></button>
+        <button class="cat-btn" data-cat="Dividend Income Funds" onclick="pickCat(this)"><div class="cat-ico">💵</div><div class="cat-name">Dividend Income</div><div class="cat-sub">Regular cash payouts</div></button>
+        <button class="cat-btn" data-cat="International Funds" onclick="pickCat(this)"><div class="cat-ico">🌍</div><div class="cat-name">International</div><div class="cat-sub">Beyond the US market</div></button>
+        <button class="cat-btn" data-cat="Bond and Fixed Income Funds" onclick="pickCat(this)"><div class="cat-ico">🛡️</div><div class="cat-name">Bonds / Safety</div><div class="cat-sub">Low risk, stable returns</div></button>
+        <button class="cat-btn" data-cat="Technology Sector ETFs" onclick="pickCat(this)"><div class="cat-ico">💻</div><div class="cat-name">Tech Sector</div><div class="cat-sub">All-in on technology</div></button>
+        <button class="cat-btn" data-cat="Real Estate REIT Funds" onclick="pickCat(this)"><div class="cat-ico">🏠</div><div class="cat-name">Real Estate</div><div class="cat-sub">Property without buying</div></button>
+        <button class="cat-btn" data-cat="ESG and Sustainable Funds" onclick="pickCat(this)"><div class="cat-ico">🌱</div><div class="cat-name">ESG / Sustainable</div><div class="cat-sub">Values-aligned investing</div></button>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-hd"><div class="step-num">2</div><div class="step-title">Your investor profile</div></div>
+      <p class="step-hint">These are pre-filled from your answers — adjust if needed.</p>
+      <div class="pref-grid">
+        <div>
+          <label class="pref-label" for="risk">Risk tolerance</label>
+          <select id="risk" onchange="updateRisk()">
+            <option value="conservative">😴 Conservative — hate losing money</option>
+            <option value="moderate" selected>⚖️ Moderate — some risk is okay</option>
+            <option value="aggressive">🔥 Aggressive — max growth</option>
+          </select>
+          <div class="risk-track">
+            <div class="rseg" id="rs1"></div><div class="rseg" id="rs2"></div>
+            <div class="rseg" id="rs3"></div><div class="rseg" id="rs4"></div><div class="rseg" id="rs5"></div>
+          </div>
+        </div>
+        <div>
+          <label class="pref-label" for="horizon">Time horizon</label>
+          <select id="horizon">
+            <option value="short term (1-3 years)">📅 1–3 years</option>
+            <option value="medium term (3-10 years)" selected>📆 3–10 years</option>
+            <option value="long term (10+ years)">🗓️ 10+ years</option>
+          </select>
+        </div>
+        <div>
+          <label class="pref-label" for="goal">Primary goal</label>
+          <select id="goal">
+            <option value="grow my wealth over time">📈 Grow my wealth</option>
+            <option value="generate regular income or dividends">💰 Generate income</option>
+            <option value="preserve capital safely">🏦 Preserve capital</option>
+            <option value="beat inflation">🎯 Beat inflation</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-card" style="padding:1.5rem 1.75rem">
+      <div class="step-hd" style="margin-bottom:8px"><div class="step-num">3</div><div class="step-title">Get your ranked fund picks</div></div>
+      <p class="step-hint" style="margin-bottom:14px">AI ranks the best-fit funds and explains each one in plain English.</p>
+      <button class="go-btn" id="goBtn" onclick="runAnalysis()">✦ &nbsp;Show me the best funds for me</button>
+    </div>
+
+  </div><!-- end #screener -->
 
   <div id="output"></div>
 
-  <div class="how">
-    <div class="how-title">How it works</div>
-    <div class="how-grid">
-      <div class="how-card">
-        <div class="how-ico">🤖</div>
-        <div class="how-name">AI-ranked results</div>
-        <div class="how-desc">Uses Google Gemini AI to rank funds by fit to your profile — not popularity or ads.</div>
+  <!-- FEES EXPLAINER -->
+  <div class="fees-section" id="feesSection">
+    <div class="fees-title">Understanding fund fees</div>
+    <div class="fees-sub">Every fund charges a fee — but they're not all the same. Knowing what you're paying (and what's hidden) can save you thousands over time.</div>
+
+    <!-- Fee types -->
+    <div class="fee-type-grid">
+      <div class="fee-card">
+        <div class="fee-card-top">
+          <div class="fee-ico">📊</div>
+          <div><div class="fee-name">Expense Ratio</div><span class="fee-tag fee-tag-green">Most important</span></div>
+        </div>
+        <div class="fee-range">0.03% – 1.5% <span>/ year</span></div>
+        <div class="fee-desc">The annual fee the fund charges to manage your money. It's taken out automatically — you never write a check. Lower is always better.</div>
+        <div class="fee-example"><strong>Example:</strong> $10,000 invested at 0.03% = <strong>$3/year</strong>. At 1.0% = <strong>$100/year</strong>. Same investment, very different cost.</div>
       </div>
-      <div class="how-card">
-        <div class="how-ico">📖</div>
-        <div class="how-name">Plain English</div>
-        <div class="how-desc">Every pick comes with a real explanation of why it suits your specific situation.</div>
+
+      <div class="fee-card">
+        <div class="fee-card-top">
+          <div class="fee-ico">🏦</div>
+          <div><div class="fee-name">Broker Commission</div><span class="fee-tag fee-tag-green">Usually $0 now</span></div>
+        </div>
+        <div class="fee-range">$0 – $9.99 <span>/ trade</span></div>
+        <div class="fee-desc">A fee your brokerage charges when you buy or sell a fund. Most major brokers (Fidelity, Schwab, Vanguard, Robinhood) now charge $0 for ETFs and mutual funds.</div>
+        <div class="fee-example"><strong>What to do:</strong> Use Fidelity, Schwab, or Vanguard — all charge <strong>$0 commissions</strong> on the funds we recommend.</div>
       </div>
-      <div class="how-card">
-        <div class="how-ico">🆓</div>
-        <div class="how-name">100% free</div>
-        <div class="how-desc">No account needed, no credit card, no ads. Just open and use.</div>
+
+      <div class="fee-card">
+        <div class="fee-card-top">
+          <div class="fee-ico">🚪</div>
+          <div><div class="fee-name">Load Fee</div><span class="fee-tag fee-tag-red">Avoid these</span></div>
+        </div>
+        <div class="fee-range">0% – 5.75% <span>upfront or exit</span></div>
+        <div class="fee-desc">Some old-school mutual funds charge a "load" — a sales commission paid when you buy (front-load) or sell (back-load). Modern index funds and ETFs never charge these.</div>
+        <div class="fee-example"><strong>Red flag:</strong> If a fund charges a load fee, look for a no-load alternative. You should <strong>never pay this</strong> for index investing.</div>
       </div>
-      <div class="how-card">
-        <div class="how-ico">📱</div>
-        <div class="how-name">Works anywhere</div>
-        <div class="how-desc">Phone, tablet, laptop — any browser, any device with internet access.</div>
+
+      <div class="fee-card">
+        <div class="fee-card-top">
+          <div class="fee-ico">↕️</div>
+          <div><div class="fee-name">Bid-Ask Spread</div><span class="fee-tag fee-tag-amber">ETFs only — tiny</span></div>
+        </div>
+        <div class="fee-range">~0.01% – 0.1% <span>per trade</span></div>
+        <div class="fee-desc">ETFs trade like stocks, so there's a tiny gap between the buy and sell price. For large, popular ETFs like SPY or VTI this is negligible — fractions of a penny per share.</div>
+        <div class="fee-example"><strong>In practice:</strong> On a $10,000 ETF purchase, the spread costs you roughly <strong>$1–$10</strong>. Not worth worrying about.</div>
+      </div>
+    </div>
+
+    <!-- Cost comparison bar chart -->
+    <div class="fee-bar-wrap">
+      <div class="fee-bar-title">Expense ratio comparison by fund type</div>
+      <div class="fee-bar-sub">Lower expense ratios = more money stays in your pocket. Here's what's typical for each category.</div>
+      <div class="fee-compare-row">
+        <div class="fee-compare-label">US Index (ETF)</div>
+        <div class="fee-compare-bar-bg"><div class="fee-compare-fill fill-green" style="width:3%">0.03%</div></div>
+      </div>
+      <div class="fee-compare-row">
+        <div class="fee-compare-label">US Index (Mutual Fund)</div>
+        <div class="fee-compare-bar-bg"><div class="fee-compare-fill fill-green" style="width:5%">0.05%</div></div>
+      </div>
+      <div class="fee-compare-row">
+        <div class="fee-compare-label">Bond Funds</div>
+        <div class="fee-compare-bar-bg"><div class="fee-compare-fill fill-blue" style="width:8%">0.05–0.1%</div></div>
+      </div>
+      <div class="fee-compare-row">
+        <div class="fee-compare-label">Dividend Income</div>
+        <div class="fee-compare-bar-bg"><div class="fee-compare-fill fill-blue" style="width:12%">0.06–0.2%</div></div>
+      </div>
+      <div class="fee-compare-row">
+        <div class="fee-compare-label">International Funds</div>
+        <div class="fee-compare-bar-bg"><div class="fee-compare-fill fill-blue" style="width:15%">0.07–0.2%</div></div>
+      </div>
+      <div class="fee-compare-row">
+        <div class="fee-compare-label">Tech / Sector ETFs</div>
+        <div class="fee-compare-bar-bg"><div class="fee-compare-fill fill-amber" style="width:25%">0.1–0.4%</div></div>
+      </div>
+      <div class="fee-compare-row">
+        <div class="fee-compare-label">ESG Funds</div>
+        <div class="fee-compare-bar-bg"><div class="fee-compare-fill fill-amber" style="width:22%">0.1–0.3%</div></div>
+      </div>
+      <div class="fee-compare-row">
+        <div class="fee-compare-label">Actively Managed</div>
+        <div class="fee-compare-bar-bg"><div class="fee-compare-fill fill-red" style="width:75%">0.5–1.5%</div></div>
+      </div>
+    </div>
+
+    <!-- Long-term cost impact calculator -->
+    <div class="fee-impact-box">
+      <div class="fee-impact-title">The real cost of fees over 30 years</div>
+      <div class="fee-impact-sub">$10,000 invested, 7% average annual return before fees</div>
+      <div class="fee-impact-grid">
+        <div class="fee-impact-card">
+          <div class="fic-label">0.03% fee (index ETF)</div>
+          <div class="fic-val gold">$74,900</div>
+          <div class="fic-note">You keep: $74,900</div>
+        </div>
+        <div class="fee-impact-card">
+          <div class="fic-label">0.5% fee (sector fund)</div>
+          <div class="fic-val">$64,400</div>
+          <div class="fic-note">Lost to fees: ~$10,500</div>
+        </div>
+        <div class="fee-impact-card">
+          <div class="fic-label">1.0% fee (active fund)</div>
+          <div class="fic-val">$54,900</div>
+          <div class="fic-note">Lost to fees: ~$20,000</div>
+        </div>
+        <div class="fee-impact-card">
+          <div class="fic-label">1.5% fee (high-cost fund)</div>
+          <div class="fic-val red">$46,900</div>
+          <div class="fic-note">Lost to fees: ~$28,000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Golden rules -->
+    <div class="fee-rules">
+      <div class="fee-rule">
+        <div class="fee-rule-ico">✅</div>
+        <div class="fee-rule-text"><strong>Rule 1 — Under 0.2% is great.</strong> For index and ETF funds, aim for an expense ratio under 0.2%. Anything under 0.1% is excellent. The funds we recommend are almost always in this range.</div>
+      </div>
+      <div class="fee-rule">
+        <div class="fee-rule-ico">✅</div>
+        <div class="fee-rule-text"><strong>Rule 2 — No-load only.</strong> Never pay a front-load or back-load fee. All the funds we surface are no-load. If your advisor recommends a fund with a load, ask why.</div>
+      </div>
+      <div class="fee-rule">
+        <div class="fee-rule-ico">✅</div>
+        <div class="fee-rule-text"><strong>Rule 3 — Use a $0 commission broker.</strong> Fidelity, Schwab, and Vanguard all offer $0 trade commissions on ETFs and their own mutual funds. There's no reason to pay per trade anymore.</div>
+      </div>
+      <div class="fee-rule">
+        <div class="fee-rule-ico">⚠️</div>
+        <div class="fee-rule-text"><strong>Watch out — "no fee" isn't always free.</strong> Some brokers offer their own house funds with 0% expense ratios but make money other ways (cash sweeps, payment for order flow). These are still fine for most investors — just be aware.</div>
       </div>
     </div>
   </div>
-</div>
+
+</div><!-- end .main -->
 
 <footer>
   <strong>FundPick</strong> — For educational purposes only. Not financial advice.<br>
@@ -371,30 +686,242 @@ footer a { color: rgba(255,255,255,0.4); }
 <script>
 let selCat = 'US Index Funds';
 
+/* ── QUIZ DATA ── */
+const questions = [
+  {
+    q: 'When do you think you'll need this money?',
+    hint: 'This is the single biggest factor in choosing the right fund type.',
+    opts: [
+      { ico: '📅', label: 'Within 1–3 years', sub: 'A house down payment, emergency fund, big purchase', value: 'short' },
+      { ico: '📆', label: 'In 3–10 years', sub: 'Kids college fund, medium-term goals', value: 'medium' },
+      { ico: '🗓️', label: '10+ years from now', sub: 'Retirement, long-term wealth building', value: 'long' }
+    ]
+  },
+  {
+    q: 'How would you feel if your investment dropped 20% in a bad year?',
+    hint: 'Be honest — there's no wrong answer, just the right fund for your personality.',
+    opts: [
+      { ico: '😰', label: 'I'd panic and want out', sub: 'I need stability above everything', value: 'conservative' },
+      { ico: '😬', label: 'Uncomfortable but I'd hold on', sub: 'I understand risk but it still stresses me', value: 'moderate' },
+      { ico: '😎', label: 'Fine — I'm in it for the long game', sub: 'Short-term drops don't bother me', value: 'aggressive' }
+    ]
+  },
+  {
+    q: 'What's your main goal for this money?',
+    hint: 'Different goals call for very different fund types.',
+    opts: [
+      { ico: '📈', label: 'Grow it as much as possible', sub: 'Maximize long-term wealth', value: 'grow' },
+      { ico: '💵', label: 'Get regular cash from it', sub: 'Monthly or quarterly income while holding', value: 'income' },
+      { ico: '🏦', label: 'Keep it safe and beat inflation', sub: 'Protect what I have, modest growth', value: 'safe' }
+    ]
+  }
+];
+
+let quizAnswers = [];
+let quizStep = 0;
+
+function startQuiz() {
+  quizAnswers = [];
+  quizStep = 0;
+  document.getElementById('guideSection').style.display = 'none';
+  document.getElementById('quizSection').style.display = 'block';
+  document.getElementById('recBanner').style.display = 'none';
+  document.getElementById('screener').style.display = 'none';
+  document.getElementById('output').innerHTML = '';
+  renderQuizStep();
+  window.scrollTo({ top: document.getElementById('quizSection').offsetTop - 70, behavior: 'smooth' });
+}
+
+function closeQuiz() {
+  document.getElementById('quizSection').style.display = 'none';
+  document.getElementById('guideSection').style.display = 'block';
+}
+
+function renderQuizStep() {
+  const q = questions[quizStep];
+  const pct = Math.round((quizStep / questions.length) * 100);
+  document.getElementById('quizBar').style.width = pct + '%';
+  document.getElementById('quizNextBtn').disabled = true;
+
+  let html = `<div class="quiz-q">${q.q}</div><div class="quiz-hint">${q.hint}</div><div class="quiz-opts">`;
+  q.opts.forEach((o, i) => {
+    html += `<button class="quiz-opt" data-val="${o.value}" onclick="selectOpt(this)">
+      <div class="qo-ico">${o.ico}</div>
+      <div class="qo-text"><div class="qo-label">${o.label}</div><div class="qo-sub">${o.sub}</div></div>
+    </button>`;
+  });
+  html += '</div>';
+  document.getElementById('quizBody').innerHTML = html;
+}
+
+function selectOpt(el) {
+  document.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('quizNextBtn').disabled = false;
+}
+
+function quizNext() {
+  const selected = document.querySelector('.quiz-opt.selected');
+  if (!selected) return;
+  quizAnswers[quizStep] = selected.dataset.val;
+  quizStep++;
+  if (quizStep < questions.length) {
+    renderQuizStep();
+  } else {
+    finishQuiz();
+  }
+}
+
+function finishQuiz() {
+  document.getElementById('quizBar').style.width = '100%';
+  const [when, stomach, goal] = quizAnswers;
+
+  // Map answers → category + settings
+  let cat, risk, horizon, goalVal, title, reason;
+
+  if (when === 'short') {
+    cat = 'Bond and Fixed Income Funds'; risk = 'conservative';
+    horizon = 'short term (1-3 years)'; goalVal = 'preserve capital safely';
+    title = 'Bonds & Fixed Income — the safe choice for short-term money';
+    reason = 'Since you need this money within 3 years, you can\'t afford a market dip right before you need it. Bond funds protect your principal and earn steady interest — the right move when your timeline is short.';
+  } else if (when === 'long' && stomach === 'aggressive' && goal === 'grow') {
+    cat = 'Growth ETFs'; risk = 'aggressive';
+    horizon = 'long term (10+ years)'; goalVal = 'grow my wealth over time';
+    title = 'Growth ETFs — built for long-term wealth builders';
+    reason = 'You have time on your side and a strong stomach for volatility — that\'s the perfect profile for growth funds. Short-term dips won\'t hurt you because you won\'t need the money for 10+ years.';
+  } else if (goal === 'income') {
+    cat = 'Dividend Income Funds'; risk = stomach === 'aggressive' ? 'moderate' : 'conservative';
+    horizon = when === 'short' ? 'short term (1-3 years)' : when === 'medium' ? 'medium term (3-10 years)' : 'long term (10+ years)';
+    goalVal = 'generate regular income or dividends';
+    title = 'Dividend Income Funds — regular cash without selling';
+    reason = 'You want your investment to generate income while you hold it. Dividend funds pay you cash quarterly from stable, profitable companies — without having to sell anything. Great for supplementing income.';
+  } else if (goal === 'safe') {
+    cat = stomach === 'conservative' ? 'Bond and Fixed Income Funds' : 'US Index Funds';
+    risk = stomach; horizon = when === 'short' ? 'short term (1-3 years)' : 'medium term (3-10 years)';
+    goalVal = 'beat inflation';
+    title = stomach === 'conservative' ? 'Bonds — capital protection first' : 'US Index Funds — safe, steady, diversified';
+    reason = stomach === 'conservative'
+      ? 'Protecting what you have is the priority. Bond funds offer predictable returns with minimal downside risk — you won\'t get rich quick, but you won\'t lose sleep either.'
+      : 'You want safety with some growth. US index funds spread your money across hundreds of companies — one bad stock can\'t sink you. A proven, low-cost way to beat inflation over time.';
+  } else {
+    cat = 'US Index Funds'; risk = stomach;
+    horizon = when === 'short' ? 'short term (1-3 years)' : when === 'medium' ? 'medium term (3-10 years)' : 'long term (10+ years)';
+    goalVal = 'grow my wealth over time';
+    title = 'US Index Funds — the reliable all-rounder';
+    reason = 'For most investors with medium-to-long timelines and a growth goal, a broad US index fund is the gold standard. Low fees, instant diversification across the entire US economy, and a strong track record.';
+  }
+
+  document.getElementById('quizSection').style.display = 'none';
+  applyGuide(cat, risk, horizon, goalVal, title, reason);
+}
+
+function applyGuide(cat, risk, horizon, goal, title, reason) {
+  selCat = cat;
+
+  // set dropdowns
+  document.getElementById('risk').value = risk;
+  document.getElementById('horizon').value = horizon;
+  document.getElementById('goal').value = goal;
+  updateRisk();
+
+  // set category
+  document.querySelectorAll('.cat-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.cat === cat);
+  });
+
+  // show recommendation banner if we have a reason
+  if (title && reason) {
+    document.getElementById('recTitle').textContent = title;
+    document.getElementById('recReason').textContent = reason;
+    document.getElementById('recBanner').style.display = 'block';
+  }
+
+  document.getElementById('guideSection').style.display = 'none';
+  document.getElementById('screener').style.display = 'block';
+  window.scrollTo({ top: document.getElementById('recBanner').offsetTop - 70, behavior: 'smooth' });
+}
+
+function skipToScreener() {
+  document.getElementById('guideSection').style.display = 'none';
+  document.getElementById('quizSection').style.display = 'none';
+  document.getElementById('screener').style.display = 'block';
+  updateRisk();
+  window.scrollTo({ top: document.getElementById('screener').offsetTop - 70, behavior: 'smooth' });
+}
+
+function resetToGuide() {
+  document.getElementById('recBanner').style.display = 'none';
+  document.getElementById('screener').style.display = 'none';
+  document.getElementById('guideSection').style.display = 'block';
+  document.getElementById('output').innerHTML = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function pickCat(el) {
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
   selCat = el.dataset.cat;
 }
 
-const riskColors = {
-  conservative: { segs: 2, color: '#1A6B4A' },
-  moderate:     { segs: 3, color: '#B86A10' },
-  aggressive:   { segs: 5, color: '#B03020' }
-};
-
+const riskColors = { conservative: { segs:2, color:'#1A6B4A' }, moderate: { segs:3, color:'#B86A10' }, aggressive: { segs:5, color:'#B03020' } };
 function updateRisk() {
   const v = document.getElementById('risk').value;
-  const { segs, color } = riskColors[v];
-  for (let i = 1; i <= 5; i++) {
-    document.getElementById('rs' + i).style.background = i <= segs ? color : 'var(--border)';
-  }
+  const { segs, color } = riskColors[v] || riskColors.moderate;
+  for (let i=1; i<=5; i++) document.getElementById('rs'+i).style.background = i<=segs ? color : 'var(--border)';
 }
-updateRisk();
 
-let stepTimer = null;
+function buildFeeBreakdown(f) {
+  const ratio = f.expense_ratio || '?';
+  const ratioNum = parseFloat(ratio) || 0;
+  let feeRating, feeColor, feeMsg;
+  if (ratioNum <= 0.1) { feeRating = 'Excellent'; feeColor = '#1A6B4A'; feeMsg = 'Very low cost — one of the cheapest options available.'; }
+  else if (ratioNum <= 0.3) { feeRating = 'Good'; feeColor = '#B86A10'; feeMsg = 'Reasonable fee for this fund type. Still well below actively managed funds.'; }
+  else { feeRating = 'Higher cost'; feeColor = '#B03020'; feeMsg = 'Above average — make sure the fund\'s returns justify the extra cost.'; }
 
-function startSteps(catLabel) {
+  const invested = 10000;
+  const years = 20;
+  const grossReturn = 0.07;
+  const netReturn = grossReturn - ratioNum / 100;
+  const withFees = Math.round(invested * Math.pow(1 + netReturn, years));
+  const withoutFees = Math.round(invested * Math.pow(1 + grossReturn, years));
+  const lost = (withoutFees - withFees).toLocaleString();
+  const kept = withFees.toLocaleString();
+
+  return `<div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;">Fee breakdown</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
+      <div style="flex:1;min-width:140px;background:var(--bg);border-radius:10px;padding:10px 14px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px;">Annual expense ratio</div>
+        <div style="font-size:20px;font-weight:600;color:${feeColor};">${ratio}</div>
+        <div style="font-size:11px;font-weight:600;color:${feeColor};margin-bottom:4px;">${feeRating}</div>
+        <div style="font-size:12px;color:var(--ink3);line-height:1.5;">${feeMsg}</div>
+      </div>
+      <div style="flex:1;min-width:140px;background:var(--bg);border-radius:10px;padding:10px 14px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px;">Commission to buy/sell</div>
+        <div style="font-size:20px;font-weight:600;color:#1A6B4A;">$0</div>
+        <div style="font-size:12px;color:var(--ink3);line-height:1.5;margin-top:4px;">At Fidelity, Schwab, or Vanguard — no charge to buy or sell.</div>
+      </div>
+      <div style="flex:1;min-width:140px;background:var(--bg);border-radius:10px;padding:10px 14px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px;">Load fee</div>
+        <div style="font-size:20px;font-weight:600;color:#1A6B4A;">None</div>
+        <div style="font-size:12px;color:var(--ink3);line-height:1.5;margin-top:4px;">No upfront or exit sales charge. You keep what you put in.</div>
+      </div>
+    </div>
+    <div style="background:#18170F;border-radius:10px;padding:12px 16px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+      <div style="flex:1;min-width:160px;">
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:2px;">$10,000 invested for 20 years @ 7% return</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.7);">After the ${ratio} fee you'd end up with <strong style="color:#C9962A;">$${kept}</strong> — roughly <strong style="color:#F97B6E;">$${lost} less</strong> than if there were zero fees.</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;">
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:2px;">You keep</div>
+        <div style="font-size:22px;font-weight:600;color:#C9962A;">$${kept}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+
+function startSteps(cat) {
   let idx = 0;
   const list = document.getElementById('stepList');
   if (!list) return;
@@ -402,26 +929,21 @@ function startSteps(catLabel) {
   stepTimer = setInterval(() => {
     const l = document.getElementById('stepList');
     if (!l) { clearInterval(stepTimer); return; }
-    const cur = l.children[idx];
-    if (cur) {
-      cur.classList.remove('on');
-      cur.classList.add('done');
-      cur.textContent = '✓ ' + cur.textContent.replace('⟳ ', '');
+    if (l.children[idx]) {
+      l.children[idx].classList.remove('on');
+      l.children[idx].classList.add('done');
     }
     idx++;
-    if (idx < l.children.length) {
-      l.children[idx].classList.add('on');
-    } else {
-      clearInterval(stepTimer);
-    }
+    if (idx < l.children.length) l.children[idx].classList.add('on');
+    else clearInterval(stepTimer);
   }, 1100);
 }
 
 const rankMeta = [
-  { label: '🥇 Top Pick',      cls: 'r1', cardCls: 'top-pick' },
-  { label: '🥈 Strong Choice', cls: 'r2', cardCls: '' },
-  { label: '🥉 Good Option',   cls: 'r3', cardCls: '' },
-  { label: 'Also Consider',    cls: 'r4', cardCls: '' }
+  { label:'🥇 Top Pick', cls:'r1', cardCls:'top-pick' },
+  { label:'🥈 Strong Choice', cls:'r2', cardCls:'' },
+  { label:'🥉 Good Option', cls:'r3', cardCls:'' },
+  { label:'Also Consider', cls:'r4', cardCls:'' }
 ];
 
 async function runAnalysis() {
@@ -434,16 +956,15 @@ async function runAnalysis() {
   btn.disabled = true;
   btn.textContent = 'Analyzing…';
 
-  out.innerHTML = `
-    <div class="loading">
-      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-      <ul class="load-steps" id="stepList">
-        <li>⟳ Analyzing your investor profile</li>
-        <li>⟳ Scanning ${selCat} funds</li>
-        <li>⟳ Ranking by fit score</li>
-        <li>⟳ Writing plain-English explanations</li>
-      </ul>
-    </div>`;
+  out.innerHTML = `<div class="loading">
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    <ul class="load-steps" id="stepList">
+      <li>⟳ Analyzing your investor profile</li>
+      <li>⟳ Scanning ${selCat} funds</li>
+      <li>⟳ Ranking by fit score</li>
+      <li>⟳ Writing plain-English explanations</li>
+    </ul>
+  </div>`;
 
   startSteps(selCat);
 
@@ -474,44 +995,40 @@ async function runAnalysis() {
     data.funds.forEach((f, i) => {
       const score = Math.min(100, Math.max(0, Math.round(parseFloat(f.fit_score) || 80)));
       const rm = rankMeta[i] || rankMeta[3];
-      html += `
-        <div class="fund-card ${rm.cardCls}">
-          <div class="rank-tag ${rm.cls}">${rm.label}</div>
-          <div class="fc-top">
-            <div class="fc-name">${f.name}</div>
-            <div class="fc-meta">
-              <span class="fc-ticker">${f.ticker}</span>
-              <span class="type-tag">${f.type}</span>
-              <span>${f.issuer}</span>
-            </div>
-          </div>
-          <div class="fc-why">💡 ${f.why_fits}</div>
-          <div class="fc-metrics">
-            <div class="metric"><div class="met-label">Expense ratio</div><div class="met-val g">${f.expense_ratio}</div></div>
-            <div class="metric"><div class="met-label">${f.key_metric_label}</div><div class="met-val">${f.key_metric_value}</div></div>
-            <div class="metric"><div class="met-label">Category</div><div class="met-val sm">${f.category_tag}</div></div>
-            <div class="metric"><div class="met-label">Best for</div><div class="met-val a">${f.best_for}</div></div>
-          </div>
-          <div class="fit-row"><span>Fit for your profile</span><span>${score}%</span></div>
-          <div class="fit-bg"><div class="fit-fill" style="width:${score}%"></div></div>
-          <div class="watchout">⚠ ${f.watch_out}</div>
-        </div>`;
+      html += `<div class="fund-card ${rm.cardCls}">
+        <div class="rank-tag ${rm.cls}">${rm.label}</div>
+        <div class="fc-top">
+          <div class="fc-name">${f.name}</div>
+          <div class="fc-meta"><span class="fc-ticker">${f.ticker}</span><span class="type-tag">${f.type}</span><span>${f.issuer}</span></div>
+        </div>
+        <div class="fc-why">💡 ${f.why_fits}</div>
+        <div class="fc-metrics">
+          <div class="metric"><div class="met-label">Expense ratio</div><div class="met-val g">${f.expense_ratio}</div></div>
+          <div class="metric"><div class="met-label">${f.key_metric_label}</div><div class="met-val">${f.key_metric_value}</div></div>
+          <div class="metric"><div class="met-label">Category</div><div class="met-val sm">${f.category_tag}</div></div>
+          <div class="metric"><div class="met-label">Best for</div><div class="met-val a">${f.best_for}</div></div>
+        </div>
+        <div class="fit-row"><span>Fit for your profile</span><span>${score}%</span></div>
+        <div class="fit-bg"><div class="fit-fill" style="width:${score}%"></div></div>
+        <div class="watchout">⚠ ${f.watch_out}</div>
+        ${buildFeeBreakdown(f)}
+      </div>`;
     });
 
     html += `<div class="disclaimer">
       <strong>⚠️ Educational purposes only — not financial advice.</strong><br>
-      AI-generated picks based on your stated preferences. Fund performance and suitability change over time.
-      Always verify on <a href="https://www.morningstar.com" target="_blank">Morningstar</a> or
+      AI-generated picks based on your stated preferences. Always verify on
+      <a href="https://www.morningstar.com" target="_blank">Morningstar</a> or
       <a href="https://finance.yahoo.com/screener" target="_blank">Yahoo Finance</a>
       and consult a licensed financial advisor before investing.
     </div></div>`;
 
     out.innerHTML = html;
-    out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    out.scrollIntoView({ behavior:'smooth', block:'start' });
 
-  } catch (e) {
+  } catch(e) {
     clearInterval(stepTimer);
-    out.innerHTML = `<div class="err"><strong>Something went wrong:</strong> ${e.message}.<br>Please try again in a moment.</div>`;
+    out.innerHTML = `<div class="err"><strong>Something went wrong:</strong> ${e.message}. Please try again.</div>`;
   }
 
   btn.disabled = false;
